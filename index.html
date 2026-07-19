@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>La caja de pandora</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Home View (375px) */
+        html, body {
+            width: 375px;
+            margin: 0 auto;
+            background: #fafafa;
+            color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            overflow-x: visible; 
+        }
+
+        /* Fixed Menu (Always 375px) */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin: 15px;
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 12px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        /* Highlighting active state */
+        .nav-links a.active {
+            color: #ff4757;
+        }
+
+        /* Post 375px (Home View) */
+        .post {
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .post-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .post-caption {
+            padding: 12px 20px;
+            font-size: 13px;
+        }
+
+        /* ALL VIEW (Responsive Grid 1140px) */
+        #all-grid-view {
+            display: none; /* Off by default */
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            max-width: 1140px;
+            padding: 10px;
+            z-index: 50;
+            background: #fafafa;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .grid-item img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Info Box */
+        .dropdown-content {
+            display: none;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            margin: 0 15px 15px 15px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#" id="btnOverview" class="active">Overview</a></li>
+            <li><a href="#" id="btnAll">All</a></li>
+            <li><a href="#" id="infoLink">Info</a></li>
+        </ul>
+    </nav>
+
+    <div id="infoBox" class="dropdown-content">
+        <p>Experimental page used as my personal portfolio, these are some examples of my work and perosnal projects </p>
+    </div>
+
+    <!-- HOME VIEW (Visible by default) -->
+    <main id="main-feed">
+        <section class="post">
+            <img src="feed/noisy.jpg" class="post-image">
+            <div class="post-caption"><b>Noisy</b> spiral HI-FI speaker </div>
+        <section class="post">
+            <img src="feed/lamps_hero.jpg" class="post-image">
+            <div class="post-caption"><b>Clay lamps</b> traditional pottery and 3d printing </div>
+        </section>
+        <section class="post">
+            <img src="feed/cd_player.jpg" class="post-image">
+            <div class="post-caption"><b>CD Player</b> recycled materials</div>
+        </section>
+         <section class="post">
+            <img src="feed/tape_player.jpg" class="post-image">
+            <div class="post-caption"><b>Tape Player</b> recycled materials </div>
+        </section>
+         <section class="post">
+            <img src="feed/cd1_player.jpg" class="post-image">
+            <div class="post-caption"><b>CD Player</b> recycled materials</div>
+        </section>
+        <section class="post">
+            <img src="feed/sal_speaker.png" class="post-image">
+            <div class="post-caption"><b>Speaker</b> portable speaker</div>
+        </section>
+         <section class="post">
+            <img src="feed/radiator_hero.jpg" class="post-image">
+            <div class="post-caption"><b>Radiator</b> </div>
+        </section>
+        <section class="post">
+            <img src="feed/hikuri_lamp.jpg" class="post-image">
+            <div class="post-caption"><b>Hikuri Lamp</b> </div>
+        </section>
+        <section class="post">
+            <img src="feed/ipad_cover.jpg" class="post-image">
+            <div class="post-caption"><b>iPad Cover</b> </div>
+        </section>
+        <section class="post">
+            <img src="feed/stylus_04.png" class="post-image">
+            <div class="post-caption"><b>Stylus</b> </div>
+        </section>
+        <section class="post">
+            <img src="feed/super_plastic.png" class="post-image">
+            <div class="post-caption"><b>Super Plastic</b> </div>
+        </section>
+         <section class="post">
+            <img src="feed/hydro.jpg" class="post-image">
+            <div class="post-caption"><b>Hydro</b> hydroforming machine </div>
+        </section>
+        <section class="post">
+            <img src="feed/pikaplant.jpg" class="post-image">
+            <div class="post-caption"><b>Pikaplant</b> ceramic plant pot </div>
+        </section>
+        <section class="post">
+            <img src="feed/3d_printer.jpg" class="post-image">
+            <div class="post-caption"><b>3D Printer</b> DIY printer made with part recycled materiels </div>
+        </section>
+        <section class="post">
+            <img src="feed/clothe.jpg" class="post-image">
+            <div class="post-caption"><b>Clothes</b> </div>
+        </section>
+        <section class="post">
+            <img src="feed/go_kiosk.jpg" class="post-image">
+            <div class="post-caption"><b>Go Kiosk</b> </div>
+        </section>
+        <section class="post">
+            <img src="feed/monotribe.jpg" class="post-image">
+            <div class="post-caption"><b>Monotribe</b> Synth modification </div>
+        </section>
+        <section class="post">
+            <img src="feed/hotel_kiosk.jpg" class="post-image">
+            <div class="post-caption"><b>Hotel Kiosk</b> </div>
+        </section>
+        <section class="post">
+            <img src="feed/ldm.jpg" class="post-image">
+            <div class="post-caption"><b>London Design Museum</b> </div>
+        </section>
+        <section class="post">
+            <img src="feed/lamp_ams.png" class="post-image">
+            <div class="post-caption"><b>Lamp AMS</b> Hight temeprature ceramic lamp</div>
+        </section> 
+        <section class="post">
+            <img src="feed/audio_mixer.jpg" class="post-image">
+            <div class="post-caption"><b>Audio Mixer</b> 5 audion inputs to 1 output stereo, aluminium case.</div>
+        </section>
+        <section class="post">
+            <img src="feed/flame.jpg" class="post-image">
+            <div class="post-caption"><b>Flame</b> Aluminium portable lamp flames </div>
+        </section>
+        <section class="post">
+            <img src="feed/norns.jpg" class="post-image">
+            <div class="post-caption"><b>Norns</b> Multy instreument synth computer, aluminum case </div>
+        </section>
+    </main>
+
+    <!-- ALL VIEW (Hidden by default) -->
+    <div id="all-grid-view">
+        <div class="grid-container" id="gridContainer"></div>
+    </div>
+
+    <script>
+        const btnOverview = document.getElementById('btnOverview');
+        const btnAll = document.getElementById('btnAll');
+        const mainFeed = document.getElementById('main-feed');
+        const gridView = document.getElementById('all-grid-view');
+        const infoBox = document.getElementById('infoBox');
+        const gridContainer = document.getElementById('gridContainer');
+
+        function renderGridFromFeed() {
+            const feedImages = Array.from(document.querySelectorAll('#main-feed .post-image'));
+            gridContainer.innerHTML = '';
+
+            feedImages.forEach((image) => {
+                const gridItem = document.createElement('div');
+                gridItem.className = 'grid-item';
+                gridItem.innerHTML = `<img src="${image.getAttribute('src')}" alt="Feed image">`;
+                gridContainer.appendChild(gridItem);
+            });
+        }
+
+        function resetToHome() {
+            mainFeed.style.display = 'block';
+            gridView.style.display = 'none';
+            btnOverview.classList.remove('active');
+            btnAll.classList.remove('active');
+        }
+
+        renderGridFromFeed();
+
+        // Overview returns to the normal scroll feed
+        btnOverview.addEventListener('click', (e) => {
+            e.preventDefault();
+            resetToHome();
+            btnOverview.classList.add('active');
+        });
+
+        // Toggle ALL
+        btnAll.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (gridView.style.display === 'block') {
+                resetToHome();
+            } else {
+                resetToHome(); // Clear other views first
+                mainFeed.style.display = 'none';
+                gridView.style.display = 'block';
+                btnAll.classList.add('active');
+            }
+        });
+
+        // Info Link
+        document.getElementById('infoLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            infoBox.style.display = infoBox.style.display === 'block' ? 'none' : 'block';
+        });
+    </script>
+</body>
+</html>
